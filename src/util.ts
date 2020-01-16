@@ -60,8 +60,8 @@ export function getCssFromText(
     }).join("\n");
     cssString = `.${styleNamespace} { ${blockString} ${cssString} }\n`;
   } else {
-    cssString = map(data, (cssData, className) => {
-      return `.${className} { ${blockString} ${cssData} }\n`;
+    cssString = map(data, (css, className) => {
+      return `.${className} { ${blockString} ${css} }\n`;
     }).join("\n");
     cssString = `.${styleNamespace} { ${blockString} }\n${cssString}\n`;
   }
