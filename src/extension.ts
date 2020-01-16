@@ -9,7 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
     "sass";
 
   console.log(
-    'Congratulations, your extension "vscode-extension-demo" is now active!'
+    'Congratulations, your extension "get-style-from-html" is now active!'
   );
 
   let getSytleFromHtml = vscode.commands.registerCommand(
