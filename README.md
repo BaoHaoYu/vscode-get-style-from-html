@@ -4,7 +4,8 @@ Extract styles from html, support sass and css, now only need to write css class
 
 ## Features
 
-- Extract styles from html, Copy to clipboard.
+- Before using `Get style from html`: write a class in `html`, and also write a corresponding class in `css`.
+- After using `Get style from html`: write a class in `html` and write inline style, then `Get style from html` can get the `class` and `style` of the tag, and then synthesize `sass` or `css` code, write a lot less css classes.
 
 ## Examples
 
