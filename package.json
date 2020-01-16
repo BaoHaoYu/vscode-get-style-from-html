@@ -1,8 +1,8 @@
 {
   "name": "get-style-from-html",
   "displayName": "Get style from html",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Get styles from html, now only need to write css class once in html",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.38.0"
   },
@@ -14,6 +14,13 @@
   ],
   "main": "./out/extension.js",
   "resource": "src",
+  "icon": "images/icon.png",
+  "publisher": "BaoHaoYu",
+  "license": "LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BaoHaoYu/vscode-get-style-from-html.git"
+  },
   "contributes": {
     "commands": [
       {
