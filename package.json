@@ -15,7 +15,7 @@
   "main": "./out/extension.js",
   "resource": "src",
   "icon": "images/icon.png",
-  "publisher": "BaoHaoYu",
+  "publisher": "a450215151",
   "license": "LICENSE.txt",
   "repository": {
     "type": "git",
