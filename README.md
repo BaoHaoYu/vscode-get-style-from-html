@@ -8,7 +8,7 @@ Extract styles from html, support sass and css, now only need to write css class
 
 ## Examples
 
-![example sass](images/example-sass.gif\)
+![example sass](images/example-sass.gif)
 
 ## Extension Settings
 
