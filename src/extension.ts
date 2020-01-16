@@ -4,7 +4,9 @@ import { getCssFromText } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
   let lastInput1: string;
-  let lastInput2: string = "sass";
+  let lastInput2: string =
+    vscode.workspace.getConfiguration().get("get.style.from.html.cssStyle") ||
+    "sass";
 
   console.log(
     'Congratulations, your extension "vscode-extension-demo" is now active!'
