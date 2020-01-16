@@ -1,9 +1,5 @@
 # Change Log
 
-All notable changes to the "vscode-extension-demo" extension will be documented in this file.
+## 1.0.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+Initial release of get-style-from-html.
