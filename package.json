@@ -33,7 +33,8 @@
       "properties": {
         "get.style.from.html.cssStyle": {
           "type": "string",
-          "deprecationMessage": "sass | css"
+          "default": "sass",
+          "description": "Is the style code copied css or sass."
         }
       }
     }
