@@ -1,4 +1,5 @@
-import _ from "lodash";
+import toArray from 'lodash.toarray';
+import map from 'lodash.map';
 
 /**
  * 通过html代码获得样式
@@ -30,8 +31,8 @@ export function getCssFromText(
 
   // 提取标签中的类和样式
   tag.map(v => {
-    const tagClass: string = _.toArray(v.match(regExp))[0];
-    const tagCss: string = _.toArray(v.match(styleExp))[0];
+    const tagClass: string = toArray(v.match(regExp))[0];
+    const tagCss: string = toArray(v.match(styleExp))[0];
 
     const css = (tagCss || "")
       .replace("style={", "")
@@ -48,7 +49,7 @@ export function getCssFromText(
   let cssString = "";
   // 使用 /* block */ 占位，防止空class不编译出来
   if (type === "sass") {
-    cssString = _.map(data, (css, className) => {
+    cssString = map(data, (css, className) => {
       if (className === styleNamespace) {
         return `${css}\n`;
       }
@@ -59,7 +60,7 @@ export function getCssFromText(
     }).join("\n");
     cssString = `.${styleNamespace} { ${blockString} ${cssString} }\n`;
   } else {
-    cssString = _.map(data, (cssData, className) => {
+    cssString = map(data, (cssData, className) => {
       return `.${className} { ${blockString} ${cssData} }\n`;
     }).join("\n");
     cssString = `.${styleNamespace} { ${blockString} }\n${cssString}\n`;
