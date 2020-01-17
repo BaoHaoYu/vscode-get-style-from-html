@@ -175,14 +175,14 @@ export function deepCssBlock(data: CssData) {
     data.map((v, i) => {
       const spaceClass = repeat("  ", 0);
       const spaceStyle = "  ";
-      if (v.children) {
-        _deepCssBlock(v.children, v);
-      }
       let className = "." + v.class;
       let style = getStyle(v.style);
       let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style};\n${spaceClass}}\n`;
       block = "\n" + block;
       styleBlock.push(block);
+      if (v.children) {
+        _deepCssBlock(v.children, v);
+      }
     });
     return styleBlock.join("");
   }
