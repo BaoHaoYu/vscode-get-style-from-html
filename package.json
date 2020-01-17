@@ -2,7 +2,7 @@
   "name": "get-style-from-html",
   "displayName": "Get style from html",
   "description": "Get styles from html, now only need to write css class once in html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.38.0"
   },
