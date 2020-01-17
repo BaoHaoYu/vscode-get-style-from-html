@@ -14,31 +14,40 @@ type CssData = Item[];
  */
 export function nestedData(list: CssData) {
   function deepList(list: CssData) {
-    list.map((item, index) => {
-      const indexL: number[] = [];
-      const copyItem = { ...item };
-      for (let i = index; i < list.length; i++) {
-        if (
-          i + 1 < list.length &&
-          list[i + 1].class.indexOf(item.class) === 0
-        ) {
-          if (!copyItem.children) {
-            copyItem.children = [];
+    //参考数据
+    let refer1 = [...list];
+    let refer2 = [...list];
+    // 移除的元素下标
+    let removeIndex: number[] = [];
+    let index = 0;
+    while (refer1.length > 0) {
+      // 当前
+      const curItem = { ...refer1[0] };
+      // 所有对比list[i]，看看list[i]是否是curItem子元素
+      for (let i = 0; i < refer2.length; i++) {
+        if (curItem.class !== refer2[i].class) {
+          if (refer2[i].class.indexOf(curItem.class) === 0) {
+            removeIndex.push(i);
+            list[index] = curItem;
+            if (!list[index].children) {
+              list[index].children = [];
+            }
+            list[index].children!.push(refer2[i]);
           }
-          indexL.push(i + 1);
-          copyItem.children.push(list[i + 1]);
-          list[i] = copyItem;
         }
       }
-      remove(list, (v, i) => {
-        return findIndex(indexL, v => v === i) !== -1;
-      });
 
-      if (copyItem.children) {
-        copyItem.children = deepList(copyItem.children);
-      }
-      return copyItem;
+      refer1.shift();
+      index++;
+    }
+
+    remove(list, (v, i) => {
+      return findIndex(removeIndex, v => v === i) !== -1;
     });
+
+    for (let i = 0; i < list.length; i++) {
+      list[i].children = deepList(list[i].children || []);
+    }
 
     return list;
   }
@@ -82,7 +91,7 @@ export function getStyleDataFromHtml(
     // class="XXXXX"
     let tagClass: string = toArray(tag.match(classRegExp))[0];
     // style="XXXXX"
-    let tagCss: string = toArray(tag.match(styleRegExp))[0];
+    let tagStyle: string = toArray(tag.match(styleRegExp))[0];
 
     tagClass = (tagClass || "")
       .replace("class=", "")
@@ -90,14 +99,14 @@ export function getStyleDataFromHtml(
       .replace(/}/g, "")
       .replace(/"/g, "");
 
-    tagCss = (tagCss || "")
+    tagStyle = (tagStyle || "")
       .replace("style=", "")
       .replace("{", "")
       .replace(/}/g, "")
       .replace(/"/g, "");
 
     if (tagClass) {
-      data.push({ class: tagClass, style: tagCss });
+      data.push({ class: tagClass, style: tagStyle });
     }
   });
 
