@@ -11,6 +11,8 @@ Extract styles from html, support sass and css, now only need to write css class
 
 ![example sass](images/example-sass.gif)
 
+![example css](images/example-css.gif)
+
 ## Extension Settings
 
 This extension contributes the following settings:
