@@ -9,9 +9,19 @@ Extract styles from html, support sass and css, now only need to write css class
 
 ## Examples
 
+### Example sass
+
 ![example sass](images/example-sass.gif)
 
+### Example css
+
 ![example css](images/example-css.gif)
+
+### Delete style
+
+Use `style=".+?"` delete style
+
+![delete style](images/delete-style.gif)
 
 ## Extension Settings
 
