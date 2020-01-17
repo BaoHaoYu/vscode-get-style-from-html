@@ -177,7 +177,7 @@ export function deepCssBlock(data: CssData) {
       const spaceStyle = "  ";
       let className = "." + v.class;
       let style = getStyle(v.style);
-      let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style};\n${spaceClass}}\n`;
+      let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${spaceClass}}\n`;
       block = "\n" + block;
       styleBlock.push(block);
       if (v.children) {
