@@ -1,5 +1,5 @@
-import toArray from 'lodash.toarray';
-import map from 'lodash.map';
+import toArray from "lodash.toarray";
+import map from "lodash.map";
 
 /**
  * 通过html代码获得样式
@@ -17,13 +17,19 @@ export function getCssFromText(
   // 所有标签
   let tag = stringSelect.match(/<(.|\n|\r)+?>/g);
   const data: any = {};
+  let regExp: RegExp;
   // 类名
-  const regExp = new RegExp(
-    `(${styleNamespace}[A-Z|a-z|0-9|-|_]+)|(${styleNamespace})`,
-    "g"
-  );
+  if (styleNamespace.length === 0) {
+    regExp = /class=".+?"/g;
+  } else {
+    regExp = new RegExp(
+      `class="(${styleNamespace}[A-Z|a-z|0-9|-|_]+|${styleNamespace})"`,
+      "g"
+    );
+  }
+
   // 样式
-  const styleExp = /(style=\{(.|\n)+?\}\})|(style=".+?")/g;
+  const styleExp = /style=".+?"/g;
   if (!tag) {
     return "";
   }
@@ -31,18 +37,23 @@ export function getCssFromText(
 
   // 提取标签中的类和样式
   tag.map(v => {
-    const tagClass: string = toArray(v.match(regExp))[0];
-    const tagCss: string = toArray(v.match(styleExp))[0];
+    let tagClass: string = toArray(v.match(regExp))[0];
+    let tagCss: string = toArray(v.match(styleExp))[0];
 
-    const css = (tagCss || "")
-      .replace("style={", "")
+    tagClass = (tagClass || "")
+      .replace("class=", "")
+      .replace("{", "")
+      .replace(/}/g, "")
+      .replace(/"/g, "");
+
+    tagCss = (tagCss || "")
       .replace("style=", "")
       .replace("{", "")
       .replace(/}/g, "")
       .replace(/"/g, "");
 
     if (tagClass) {
-      data[tagClass] = css;
+      data[tagClass] = tagCss;
     }
   });
 
@@ -53,12 +64,17 @@ export function getCssFromText(
       if (className === styleNamespace) {
         return `${css}\n`;
       }
-      return `  ${className.replace(
-        styleNamespace,
-        "&"
-      )} { ${blockString} ${css} }\n`;
+      let pre: string;
+      if (styleNamespace.length === 0) {
+        pre = "." + className;
+      } else {
+        pre = className.replace(styleNamespace, "&");
+      }
+      return `  ${pre} { ${blockString} ${css} }\n`;
     }).join("\n");
-    cssString = `.${styleNamespace} { ${blockString} ${cssString} }\n`;
+    if (styleNamespace.length !== 0) {
+      cssString = `.${styleNamespace} { ${blockString} ${cssString} }\n`;
+    }
   } else {
     cssString = map(data, (css, className) => {
       return `.${className} { ${blockString} ${css} }\n`;

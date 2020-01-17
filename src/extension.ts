@@ -30,8 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
         let styleNamespace = await vscode.window.showInputBox({
           prompt: "Enter style namespace.",
           value: lastInput1
-        });
-        if (styleNamespace === undefined || styleNamespace.length === 0) return;
+        }) || "";
         lastInput1 = styleNamespace;
 
         // sass或者css
