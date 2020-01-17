@@ -21,6 +21,10 @@ This extension contributes the following settings:
 
 ## Release Notes
 
+### 1.0.1
+
+New feature: sass deep nesting.
+
 ### 1.0.0
 
 Initial release of get-style-from-html.
