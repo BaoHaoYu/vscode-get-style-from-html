@@ -22,7 +22,6 @@ export function nestedData(list: CssData) {
           i + 1 < list.length &&
           list[i + 1].class.indexOf(item.class) === 0
         ) {
-          // console.log(item.class + " children : ", list[i + 1].class);
           if (!copyItem.children) {
             copyItem.children = [];
           }
@@ -58,32 +57,32 @@ export function getStyleDataFromHtml(
   stringSelect: string
 ) {
   // 所有标签
-  let tag = stringSelect.match(/<(.|\n|\r)+?>/g);
+  let tags = stringSelect.match(/<(.|\n|\r)+?>/g);
   const data: CssData = [];
-  let regExp: RegExp;
+  let classRegExp: RegExp;
   // 类名
   if (styleNamespace.length === 0) {
-    regExp = /class=".+?"/g;
+    classRegExp = /class=".+?"/g;
   } else {
-    regExp = new RegExp(
+    classRegExp = new RegExp(
       `class="(${styleNamespace}[A-Z|a-z|0-9|-|_]+|${styleNamespace})"`,
       "g"
     );
   }
 
   // 样式
-  const styleExp = /style=".+?"/g;
-  if (!tag) {
+  const styleRegExp = /style=".+?"/g;
+  if (!tags) {
     return data;
   }
-  tag = tag.filter(v => v.includes("class"));
+  tags = tags.filter(v => v.includes("class"));
 
   // 提取标签中的类和样式
-  tag.map(v => {
+  tags.map(tag => {
     // class="XXXXX"
-    let tagClass: string = toArray(v.match(regExp))[0];
+    let tagClass: string = toArray(tag.match(classRegExp))[0];
     // style="XXXXX"
-    let tagCss: string = toArray(v.match(styleExp))[0];
+    let tagCss: string = toArray(tag.match(styleRegExp))[0];
 
     tagClass = (tagClass || "")
       .replace("class=", "")
@@ -105,7 +104,11 @@ export function getStyleDataFromHtml(
   return data;
 }
 
-function gStyle(style: string) {
+/**
+ * 处理样式
+ * @param style 样式
+ */
+function getStyle(style: string) {
   style = style
     .split(";")
     .filter(v => v.length !== 0)
@@ -133,11 +136,12 @@ export function deepSassBlock(data: CssData, deep: number = 0, parent?: Item) {
     let childrenBlock = "";
     const spaceClass = repeat("  ", deep);
     const spaceStyle = repeat("  ", deep) + "  ";
+
     if (v.children) {
       childrenBlock = deepSassBlock(v.children, deep + 1, v);
     }
     let className = parent ? v.class.replace(parent.class, "&") : "." + v.class;
-    let style = gStyle(v.style);
+    let style = getStyle(v.style);
     let block = `${spaceClass}${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${childrenBlock}${spaceClass}}\n`;
     if (deep !== 0 || i !== 0) {
       block = "\n" + block;
@@ -166,7 +170,7 @@ export function deepCssBlock(data: CssData) {
         _deepCssBlock(v.children, v);
       }
       let className = "." + v.class;
-      let style = gStyle(v.style);
+      let style = getStyle(v.style);
       let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style};\n${spaceClass}}\n`;
       block = "\n" + block;
       styleBlock.push(block);
