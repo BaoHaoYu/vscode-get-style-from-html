@@ -74,7 +74,7 @@ export function getStyleDataFromHtml(
     classRegExp = /class=".+?"/g;
   } else {
     classRegExp = new RegExp(
-      `class="(${styleNamespace}[A-Z|a-z|0-9|-|_]+|${styleNamespace})"`,
+      `class="(${styleNamespace}[A-Z|a-z|0-9|\\-|_]+|${styleNamespace})"`,
       "g"
     );
   }
