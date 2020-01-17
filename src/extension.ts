@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { copy } from "copy-paste";
-import { getCssFromText } from "./util";
+import { getStyleStringFromHtml } from "./util";
 
 export function activate(context: vscode.ExtensionContext) {
   let lastInput1: string;
@@ -27,10 +27,11 @@ export function activate(context: vscode.ExtensionContext) {
         );
 
         // 样式
-        let styleNamespace = await vscode.window.showInputBox({
-          prompt: "Enter style namespace.",
-          value: lastInput1
-        }) || "";
+        let styleNamespace =
+          (await vscode.window.showInputBox({
+            prompt: "Enter style namespace.",
+            value: lastInput1
+          })) || "";
         lastInput1 = styleNamespace;
 
         // sass或者css
@@ -40,8 +41,12 @@ export function activate(context: vscode.ExtensionContext) {
         });
         lastInput2 = sassOrCss;
 
-        const css = getCssFromText(styleNamespace, selectText, sassOrCss);
-        copy(css, () => {
+        const styleString = getStyleStringFromHtml(
+          styleNamespace,
+          selectText,
+          sassOrCss
+        );
+        copy(styleString, () => {
           vscode.window.showInformationMessage("Code has copy to clipboard!");
         });
       });

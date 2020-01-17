@@ -37,10 +37,24 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/lodash.map@^4.6.13":
-  version "4.6.13"
-  resolved "https://registry.npmjs.org/@types/lodash.map/-/lodash.map-4.6.13.tgz#7d776611d4c0345e48cfdfe466d7b291b31d1d13"
-  integrity sha512-kppRBzlpuvQQsr7R2nv/DDDZds8fglRFNAK70WUOkOC18KOcuQ22oQF9Kgy5Z2v/eDNkBm0ltrT6FThSkuWwow==
+"@types/lodash.findindex@^4.6.6":
+  version "4.6.6"
+  resolved "https://registry.npmjs.org/@types/lodash.findindex/-/lodash.findindex-4.6.6.tgz#36079decaaab8bcdcfb86cd5f3c0f20aca908691"
+  integrity sha512-quPh7tw70yhryaubH6wBvgIQgeU1PFjdoT4eaW6WCKzjIlxgImLKIv4bvJhMTUlRkMgf5VAfECKKXKuB8cexgw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.remove@^4.7.6":
+  version "4.7.6"
+  resolved "https://registry.npmjs.org/@types/lodash.remove/-/lodash.remove-4.7.6.tgz#c9ab9a4ab1b8f6af60345224418255c9061b5589"
+  integrity sha512-RPZHKzbDu5vqdySn4LwYcg31tdGA0eoRiggzUgHGofRtm2VDp/junkHSmfkExZzmrSFfoqpXawE+ojUuN78YLw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.repeat@^4.1.6":
+  version "4.1.6"
+  resolved "https://registry.npmjs.org/@types/lodash.repeat/-/lodash.repeat-4.1.6.tgz#1a1c753df8259417eaca243d1aac3082557d5218"
+  integrity sha512-CcvaqpovotKQM91TXvmWFnVL+YjI/NjdED4mjytR+0xMtCW8SZi6Riod5e3AQSuwSIK0qpC+uiF4I0IvQui7EA==
   dependencies:
     "@types/lodash" "*"
 
@@ -48,6 +62,13 @@
   version "4.4.6"
   resolved "https://registry.npmjs.org/@types/lodash.toarray/-/lodash.toarray-4.4.6.tgz#d93f146760cc85b42d94070c50fb4d4d4618aaca"
   integrity sha512-23TxdC73+4Z3gdP+J/QWUfjba0DBLNOI4gC+nKn7wLfb5EOrSpqKsnDTzW9xMngF96uvVm7ROFcQ96PDjWEcNw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.uniqby@^4.7.6":
+  version "4.7.6"
+  resolved "https://registry.npmjs.org/@types/lodash.uniqby/-/lodash.uniqby-4.7.6.tgz#672827a701403f07904fe37f0721ae92abfa80e8"
+  integrity sha512-9wBhrm1y6asW50Joj6tsySCNUgzK2tCqL7vtKIej0E9RyeBFdcte7fxUosmFuMoOU0eHqOMK76kCCrK99jxHgg==
   dependencies:
     "@types/lodash" "*"
 
@@ -463,15 +484,30 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.map@^4.6.0:
+lodash.findindex@^4.6.0:
   version "4.6.0"
-  resolved "https://registry.npmjs.org/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
-  integrity sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=
+  resolved "https://registry.npmjs.org/lodash.findindex/-/lodash.findindex-4.6.0.tgz#a3245dee61fb9b6e0624b535125624bb69c11106"
+  integrity sha1-oyRd7mH7m24GJLU1ElYku2nBEQY=
+
+lodash.remove@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/lodash.remove/-/lodash.remove-4.7.0.tgz#f31d31e7c39a0690d5074ec0d3627162334ee626"
+  integrity sha1-8x0x58OaBpDVB07A02JxYjNO5iY=
+
+lodash.repeat@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/lodash.repeat/-/lodash.repeat-4.1.0.tgz#fc7de8131d8c8ac07e4b49f74ffe829d1f2bec44"
+  integrity sha1-/H3oEx2MisB+S0n3T/6CnR8r7EQ=
 
 lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
+lodash.uniqby@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/lodash.uniqby/-/lodash.uniqby-4.7.0.tgz#d99c07a669e9e6d24e1362dfe266c67616af1302"
+  integrity sha1-2ZwHpmnp5tJOE2Lf4mbGdhavEwI=
 
 lodash@^4.17.15:
   version "4.17.15"
