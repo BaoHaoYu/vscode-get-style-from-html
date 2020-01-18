@@ -10,6 +10,7 @@ import {
     deleteStyle,
     deepSassBlock,
     deepCssBlock,
+    getStyleStringFromHtml,
 } from '../../util'
 
 suite('Extension Test Suite', () => {
@@ -94,5 +95,31 @@ suite('Extension Test Suite', () => {
         assert.equal(/app\-head\s{/.test(css), true)
         assert.equal(/app\-head\-title\s{/.test(css), true)
         assert.equal(/app\-foot\s{/.test(css), true)
+    })
+
+    test('Test function getStyleStringFromHtml', () => {
+        let sass = getStyleStringFromHtml('', htmlString, 'sass')
+        let css = getStyleStringFromHtml('', htmlString, 'css')
+        let sassNamespece = getStyleStringFromHtml('App', htmlString, 'sass')
+        let cssNamespece = getStyleStringFromHtml('App', htmlString, 'css')
+
+        assert.equal(/App\s{/.test(sass), true)
+        assert.equal(/&\-head\s{/.test(sass), true)
+        assert.equal(/&\-icon\s{/.test(sass), true)
+        assert.equal(/&\-text\s{/.test(sass), true)
+        assert.equal(/&\-footer\s{/.test(sass), true)
+        assert.equal(/&\-about\s{/.test(sass), true)
+        assert.equal(/info\s{/.test(sass), true)
+
+        assert.equal(/App\s{/.test(css), true)
+        assert.equal(/App\-head\s{/.test(css), true)
+        assert.equal(/App\-head\-icon\s{/.test(css), true)
+        assert.equal(/App\-head\-text\s{/.test(css), true)
+        assert.equal(/App\-footer\s{/.test(css), true)
+        assert.equal(/App\-footer\-about\s{/.test(css), true)
+        assert.equal(/info\s{/.test(css), true)
+
+        assert.equal(/info\s{/.test(sassNamespece), false)
+        assert.equal(/info\s{/.test(cssNamespece), false)
     })
 })
