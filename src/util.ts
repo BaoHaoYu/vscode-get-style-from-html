@@ -195,7 +195,7 @@ export function deepCssBlock(data: CssData) {
  * @param html html代码
  */
 export function deleteStyle(html: string) {
-    return html.replace(/(data\-)?del(.|\n)+?style="(.|\n)+?"/g, '')
+    return html.replace(/(data\-)?del(.|\n|\r)+?style="(.|\n|\r)+?"/g, '')
 }
 
 /**
