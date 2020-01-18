@@ -1,55 +1,61 @@
 import * as vscode from 'vscode'
 import { copy } from 'copy-paste'
-import { getStyleStringFromHtml } from './util'
+import { getStyleStringFromHtml, deleteStyle } from './util'
 
 export function activate(context: vscode.ExtensionContext) {
-    let lastInput1: string
-    let lastInput2: string =
-        vscode.workspace
-            .getConfiguration()
-            .get('get.style.from.html.cssStyle') || 'sass'
+    let cssStyle = vscode.workspace
+        .getConfiguration()
+        .get('get.style.from.html.cssStyle') as string
+
+    let lastInputStyleNamespace: string
+    let lastInputCssStyle: string = cssStyle || 'sass'
+
     const startString = `Congratulations, your extension "get-style-from-html" is now active!`
     console.log(startString)
 
-    let getSytleFromHtml = vscode.commands.registerCommand(
+    let getSytleFromHtml = vscode.commands.registerTextEditorCommand(
         'extension.get.style.from.html',
-        async () => {
-            if (!vscode.window.activeTextEditor) return
+        async (
+            editor: vscode.TextEditor,
+            edit: vscode.TextEditorEdit,
+            args: any[]
+        ) => {
+            let selectRange = editor.selection
+            if (selectRange.isEmpty) return
 
-            vscode.window.activeTextEditor.edit(async (editBuilder) => {
-                if (!vscode.window.activeTextEditor) return
-                let activeTextEditor = vscode.window.activeTextEditor
-                let selectRange = activeTextEditor.selection
-                if (selectRange.isEmpty) return
+            let selectText = editor.document.getText(selectRange)
 
-                let selectText = activeTextEditor.document.getText(selectRange)
+            // 样式
+            let styleNamespace = await vscode.window.showInputBox({
+                prompt: 'Enter style namespace.',
+                value: lastInputStyleNamespace,
+            })
 
-                // 样式
-                let styleNamespace = await vscode.window.showInputBox({
-                    prompt: 'Enter style namespace.',
-                    value: lastInput1,
-                })
+            lastInputStyleNamespace = styleNamespace || ''
 
-                lastInput1 = styleNamespace || ''
+            // sass或者css
+            let sassOrCss: any = await vscode.window.showInputBox({
+                prompt: 'Enter sass or css.',
+                value: lastInputCssStyle,
+            })
+            lastInputCssStyle = sassOrCss
 
-                // sass或者css
-                let sassOrCss: any = await vscode.window.showInputBox({
-                    prompt: 'Enter sass or css.',
-                    value: lastInput2,
-                })
-                lastInput2 = sassOrCss
+            let styleString = getStyleStringFromHtml(
+                styleNamespace || '',
+                selectText,
+                sassOrCss
+            )
 
-                let styleString = getStyleStringFromHtml(
-                    styleNamespace || '',
-                    selectText,
-                    sassOrCss
+            // 删除 del style="XXXXX"
+            await editor.edit((e) => {
+                let selectRange = editor.selection
+                e.replace(selectRange, deleteStyle(selectText))
+            })
+
+            copy(styleString, () => {
+                vscode.window.showInformationMessage(
+                    'Code has copy to clipboard!'
                 )
-                let copySuccess = () => {
-                    vscode.window.showInformationMessage(
-                        'Code has copy to clipboard!'
-                    )
-                }
-                copy(styleString, copySuccess)
             })
         }
     )

@@ -191,6 +191,14 @@ export function deepCssBlock(data: CssData) {
 }
 
 /**
+ * 清除style
+ * @param html html代码
+ */
+export function deleteStyle(html: string) {
+    return html.replace(/del\sstyle="(.|\n)+?"/g, '')
+}
+
+/**
  * 总体逻辑
  * @param styleNamespace 命名口空间
  * @param stringSelect 选中的文本
