@@ -17,11 +17,9 @@ Extract styles from html, support sass and css, now only need to write css class
 
 ![example css](images/example-css.gif)
 
-### Delete style
+### Example delete style by "data-del" or "del"
 
-Use `style=".+?"` delete style
-
-![delete style](images/delete-style.gif)
+![delete style](images/example-delete-style.gif)
 
 ## Extension Settings
 
