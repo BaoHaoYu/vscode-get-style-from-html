@@ -1,58 +1,58 @@
-import toArray from "lodash.toarray";
-import remove from "lodash.remove";
-import findIndex from "lodash.findindex";
-import repeat from "lodash.repeat";
-import uniqBy from "lodash.uniqby";
+import toArray from 'lodash.toarray'
+import remove from 'lodash.remove'
+import findIndex from 'lodash.findindex'
+import repeat from 'lodash.repeat'
+import uniqBy from 'lodash.uniqby'
 
-type Item = { class: string; style: string; children?: CssData };
+export type Item = { class: string; style: string; children?: CssData }
 
-type CssData = Item[];
+export type CssData = Item[]
 
 /**
  * 把平行数据转化为嵌套数据··
  * @param list 数据列表
  */
 export function nestedData(list: CssData) {
-  function deepList(list: CssData) {
-    //参考数据
-    let refer1 = [...list];
-    let refer2 = [...list];
-    // 移除的元素下标
-    let removeIndex: number[] = [];
-    let index = 0;
-    while (refer1.length > 0) {
-      // 当前
-      const curItem = { ...refer1[0] };
-      // 所有对比list[i]，看看list[i]是否是curItem子元素
-      for (let i = 0; i < refer2.length; i++) {
-        if (curItem.class !== refer2[i].class) {
-          if (refer2[i].class.indexOf(curItem.class) === 0) {
-            removeIndex.push(i);
-            list[index] = curItem;
-            if (!list[index].children) {
-              list[index].children = [];
+    function deepList(list: CssData) {
+        //参考数据
+        let refer1 = [...list]
+        let refer2 = [...list]
+        // 移除的元素下标
+        let removeIndex: number[] = []
+        let index = 0
+        while (refer1.length > 0) {
+            // 当前
+            const curItem = { ...refer1[0] }
+            // 所有对比list[i]，看看list[i]是否是curItem子元素
+            for (let i = 0; i < refer2.length; i++) {
+                if (curItem.class !== refer2[i].class) {
+                    if (refer2[i].class.indexOf(curItem.class) === 0) {
+                        removeIndex.push(i)
+                        list[index] = curItem
+                        if (!list[index].children) {
+                            list[index].children = []
+                        }
+                        list[index].children!.push(refer2[i])
+                    }
+                }
             }
-            list[index].children!.push(refer2[i]);
-          }
+
+            refer1.shift()
+            index++
         }
-      }
 
-      refer1.shift();
-      index++;
+        remove(list, (v, i) => {
+            return findIndex(removeIndex, (v) => v === i) !== -1
+        })
+
+        for (let i = 0; i < list.length; i++) {
+            list[i].children = deepList(list[i].children || [])
+        }
+
+        return list
     }
 
-    remove(list, (v, i) => {
-      return findIndex(removeIndex, v => v === i) !== -1;
-    });
-
-    for (let i = 0; i < list.length; i++) {
-      list[i].children = deepList(list[i].children || []);
-    }
-
-    return list;
-  }
-
-  return deepList([...list]);
+    return deepList([...list])
 }
 
 /**
@@ -62,55 +62,53 @@ export function nestedData(list: CssData) {
  * @param type 类型
  */
 export function getStyleDataFromHtml(
-  styleNamespace: string,
-  stringSelect: string
+    styleNamespace: string,
+    stringSelect: string
 ) {
-  // 所有标签
-  let tags = stringSelect.match(/<(.|\n|\r)+?>/g);
-  const data: CssData = [];
-  let classRegExp: RegExp;
-  // 类名
-  if (styleNamespace.length === 0) {
-    classRegExp = /class=".+?"/g;
-  } else {
-    classRegExp = new RegExp(
-      `class="(${styleNamespace}[A-Z|a-z|0-9|\\-|_]+|${styleNamespace})"`,
-      "g"
-    );
-  }
-
-  // 样式
-  const styleRegExp = /style=".+?"/g;
-  if (!tags) {
-    return data;
-  }
-  tags = tags.filter(v => v.includes("class"));
-
-  // 提取标签中的类和样式
-  tags.map(tag => {
-    // class="XXXXX"
-    let tagClass: string = toArray(tag.match(classRegExp))[0];
-    // style="XXXXX"
-    let tagStyle: string = toArray(tag.match(styleRegExp))[0];
-
-    tagClass = (tagClass || "")
-      .replace("class=", "")
-      .replace("{", "")
-      .replace(/}/g, "")
-      .replace(/"/g, "");
-
-    tagStyle = (tagStyle || "")
-      .replace("style=", "")
-      .replace("{", "")
-      .replace(/}/g, "")
-      .replace(/"/g, "");
-
-    if (tagClass) {
-      data.push({ class: tagClass, style: tagStyle });
+    // 所有标签
+    let tags = stringSelect.match(/<(.|\n|\r)+?>/g)
+    const data: CssData = []
+    let classRegExp: RegExp
+    // 类名
+    if (styleNamespace.length === 0) {
+        classRegExp = /class=".+?"/g
+    } else {
+        let regExpString = `class="(${styleNamespace}[A-Z|a-z|0-9|\\-|_]+|${styleNamespace})"`
+        classRegExp = new RegExp(regExpString, 'g')
     }
-  });
 
-  return data;
+    // 样式
+    const styleRegExp = /style=".+?"/g
+    if (!tags) {
+        return data
+    }
+    tags = tags.filter((v) => v.includes('class'))
+
+    // 提取标签中的类和样式
+    tags.map((tag) => {
+        // class="XXXXX"
+        let tagClass: string = toArray(tag.match(classRegExp))[0]
+        // style="XXXXX"
+        let tagStyle: string = toArray(tag.match(styleRegExp))[0]
+
+        tagClass = (tagClass || '')
+            .replace('class=', '')
+            .replace('{', '')
+            .replace(/}/g, '')
+            .replace(/"/g, '')
+
+        tagStyle = (tagStyle || '')
+            .replace('style=', '')
+            .replace('{', '')
+            .replace(/}/g, '')
+            .replace(/"/g, '')
+
+        if (tagClass) {
+            data.push({ class: tagClass, style: tagStyle })
+        }
+    })
+
+    return data
 }
 
 /**
@@ -118,16 +116,16 @@ export function getStyleDataFromHtml(
  * @param style 样式
  */
 function getStyle(style: string) {
-  style = style
-    .split(";")
-    .filter(v => v.length !== 0)
-    .join(";");
-  if (style.length === 0) {
-    style = "";
-  } else {
-    style = style + ";";
-  }
-  return style;
+    style = style
+        .split(';')
+        .filter((v) => v.length !== 0)
+        .join(';')
+    if (style.length === 0) {
+        style = ''
+    } else {
+        style = style + ';'
+    }
+    return style
 }
 
 /**
@@ -137,27 +135,29 @@ function getStyle(style: string) {
  * @param parent 父数据
  */
 export function deepSassBlock(data: CssData, deep: number = 0, parent?: Item) {
-  // 占位
-  const blockString = "/* - */";
-  let sassStyle: string = "";
+    // 占位
+    const blockString = '/* - */'
+    let sassStyle: string = ''
 
-  data.map((v, i) => {
-    let childrenBlock = "";
-    const spaceClass = repeat("  ", deep);
-    const spaceStyle = repeat("  ", deep) + "  ";
+    data.map((v, i) => {
+        let childrenBlock = ''
+        const spaceClass = repeat('  ', deep)
+        const spaceStyle = repeat('  ', deep) + '  '
 
-    if (v.children) {
-      childrenBlock = deepSassBlock(v.children, deep + 1, v);
-    }
-    let className = parent ? v.class.replace(parent.class, "&") : "." + v.class;
-    let style = getStyle(v.style);
-    let block = `${spaceClass}${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${childrenBlock}${spaceClass}}\n`;
-    if (deep !== 0 || i !== 0) {
-      block = "\n" + block;
-    }
-    sassStyle += block;
-  });
-  return sassStyle;
+        if (v.children) {
+            childrenBlock = deepSassBlock(v.children, deep + 1, v)
+        }
+        let className = parent
+            ? v.class.replace(parent.class, '&')
+            : '.' + v.class
+        let style = getStyle(v.style)
+        let block = `${spaceClass}${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${childrenBlock}${spaceClass}}\n`
+        if (deep !== 0 || i !== 0) {
+            block = '\n' + block
+        }
+        sassStyle += block
+    })
+    return sassStyle
 }
 /**
  * 生成sass
@@ -166,28 +166,28 @@ export function deepSassBlock(data: CssData, deep: number = 0, parent?: Item) {
  * @param parent 父数据
  */
 export function deepCssBlock(data: CssData) {
-  const styleBlock: string[] = [];
+    const styleBlock: string[] = []
 
-  function _deepCssBlock(data: CssData, parent?: Item) {
-    // 占位
-    const blockString = "/* - */";
+    function _deepCssBlock(data: CssData, parent?: Item) {
+        // 占位
+        const blockString = '/* - */'
 
-    data.map((v, i) => {
-      const spaceClass = repeat("  ", 0);
-      const spaceStyle = "  ";
-      let className = "." + v.class;
-      let style = getStyle(v.style);
-      let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${spaceClass}}\n`;
-      block = "\n" + block;
-      styleBlock.push(block);
-      if (v.children) {
-        _deepCssBlock(v.children, v);
-      }
-    });
-    return styleBlock.join("");
-  }
+        data.map((v, i) => {
+            const spaceClass = repeat('  ', 0)
+            const spaceStyle = '  '
+            let className = '.' + v.class
+            let style = getStyle(v.style)
+            let block = `${className} {\n${spaceStyle}${blockString}\n${spaceStyle}${style}\n${spaceClass}}\n`
+            block = '\n' + block
+            styleBlock.push(block)
+            if (v.children) {
+                _deepCssBlock(v.children, v)
+            }
+        })
+        return styleBlock.join('')
+    }
 
-  return _deepCssBlock(data);
+    return _deepCssBlock(data)
 }
 
 /**
@@ -197,16 +197,16 @@ export function deepCssBlock(data: CssData) {
  * @param type 类型
  */
 export function getStyleStringFromHtml(
-  styleNamespace: string,
-  stringSelect: string,
-  type: "sass" | "css" = "sass"
+    styleNamespace: string,
+    stringSelect: string,
+    type: 'sass' | 'css' = 'sass'
 ) {
-  const data = getStyleDataFromHtml(styleNamespace, stringSelect);
-  const uniqData = uniqBy(data, v => v.class);
-  const nData = nestedData(uniqData);
-  if (type === "sass") {
-    return deepSassBlock(nData);
-  } else {
-    return deepCssBlock(nData);
-  }
+    const data = getStyleDataFromHtml(styleNamespace, stringSelect)
+    const uniqData = uniqBy(data, (v) => v.class)
+    const nData = nestedData(uniqData)
+    if (type === 'sass') {
+        return deepSassBlock(nData)
+    } else {
+        return deepCssBlock(nData)
+    }
 }

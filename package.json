@@ -70,5 +70,16 @@
     "lodash.repeat": "^4.1.0",
     "lodash.toarray": "^4.4.0",
     "lodash.uniqby": "^4.7.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "printWidth": 80,
+    "semi": false,
+    "arrowParens": "always",
+    "useTabs": false,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "tabWidth": 4,
+    "singleQuote": true
   }
 }
