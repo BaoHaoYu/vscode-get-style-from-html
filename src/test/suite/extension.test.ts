@@ -15,23 +15,26 @@ import {
 
 suite('Extension Test Suite', () => {
     vscode.window.showInformationMessage('Start all tests.')
-    let htmlString = `
-    <div class="App" del style="background: black">
-        <div class="App-head" del style="height: 60px">
-            <i class="App-head-icon" del style="height: 20px;width:20px"></i>
-            <div class="App-head-text" del style="font-size: 20px">
-                Title
-            </div>
-        </div>
-        <div class="App-footer" del style="height: 60px">
-            <div class="App-footer-about">
-                <a href="./about.html">about</a>
-            </div>
-        </div>
-        <div class="info" del style="color: blue">
-            info
-        </div>
-    </div>`
+    let htmlString = `<div class="App" del style="background: black">
+    <div class="App-head" del style="height: 60px">
+      <i
+        class="App-head-icon"
+        del
+        style="height: 20px;width:20px;background-position: center"
+      />
+      <div class="App-head-text" del style="font-size: 20px">
+        Title
+      </div>
+    </div>
+    <div class="App-footer" data-del style="height: 60px">
+      <div class="App-footer-about">
+        <a href="./about.html">about</a>
+      </div>
+    </div>
+    <div class="info" del style="color: blue">
+      info
+    </div>
+  </div>`
     let cssData: CssData = [
         { class: 'app', style: '' },
         { class: 'app-head-title', style: '' },
