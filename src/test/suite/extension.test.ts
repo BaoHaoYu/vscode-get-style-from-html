@@ -69,7 +69,7 @@ suite('Extension Test Suite', () => {
         assert.equal(!!rootData.children, true)
         assert.equal(rootData.children!.length, 2)
 
-        const appHead = rootData.children!.filter(
+        let appHead = rootData.children!.filter(
             (v) => v.class === 'app-head'
         )[0]
         assert.equal(!!appHead.children, true)
@@ -78,7 +78,7 @@ suite('Extension Test Suite', () => {
 
     test('Test function deepSassBlock', () => {
         let ndata = nestedData(cssData)
-        const sass = deepSassBlock(ndata)
+        let sass = deepSassBlock(ndata)
 
         assert.equal(/app\s{/.test(sass), true)
         assert.equal(/&\-head\s{/.test(sass), true)
@@ -88,7 +88,7 @@ suite('Extension Test Suite', () => {
 
     test('Test function deepCssBlock', () => {
         let ndata = nestedData(cssData)
-        const css = deepCssBlock(ndata)
+        let css = deepCssBlock(ndata)
 
         assert.equal(/app\s{/.test(css), true)
         assert.equal(/app\-head\s{/.test(css), true)
