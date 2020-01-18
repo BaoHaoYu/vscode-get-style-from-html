@@ -29,7 +29,7 @@ This extension contributes the following settings:
 
 ## Release Notes
 
-### 1.0.2
+### 1.1.0
 
 New feature: Add `del` or `data-del` in front of style. Using Get style from html command will remove the code `style="XXX"`.
 New feature: Hot key `alt+shift+q`.
