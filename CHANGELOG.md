@@ -2,7 +2,7 @@
 
 ## 1.0.2
 
-New feature: Add `del` in front of style. Using Get style from html command will remove the code `style="XXX"`.
+New feature: Add `del` or `data-del` in front of style. Using Get style from html command will remove the code `style="XXX"`.
 New feature: Hot key `alt+shift+q`.
 
 ## 1.0.1
