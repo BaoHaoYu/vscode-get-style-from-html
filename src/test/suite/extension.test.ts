@@ -9,6 +9,7 @@ import {
     getStyleDataFromHtml,
     deleteStyle,
     deepSassBlock,
+    deepCssBlock,
 } from '../../util'
 
 suite('Extension Test Suite', () => {
@@ -83,5 +84,15 @@ suite('Extension Test Suite', () => {
         assert.equal(/&\-head\s{/.test(sass), true)
         assert.equal(/&\-title\s{/.test(sass), true)
         assert.equal(/&\-foot\s{/.test(sass), true)
+    })
+
+    test('Test function deepCssBlock', () => {
+        let ndata = nestedData(cssData)
+        const css = deepCssBlock(ndata)
+
+        assert.equal(/app\s{/.test(css), true)
+        assert.equal(/app\-head\s{/.test(css), true)
+        assert.equal(/app\-head\-title\s{/.test(css), true)
+        assert.equal(/app\-foot\s{/.test(css), true)
     })
 })
