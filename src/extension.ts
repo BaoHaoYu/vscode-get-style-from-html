@@ -15,11 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     let getSytleFromHtml = vscode.commands.registerTextEditorCommand(
         'extension.get.style.from.html',
-        async (
-            editor: vscode.TextEditor,
-            edit: vscode.TextEditorEdit,
-            args: any[]
-        ) => {
+        async (editor, edit, args) => {
             let selectRange = editor.selection
             if (selectRange.isEmpty) return
 
