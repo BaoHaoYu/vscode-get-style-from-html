@@ -37,10 +37,24 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/lodash.dropright@^4.1.6":
+  version "4.1.6"
+  resolved "https://registry.npmjs.org/@types/lodash.dropright/-/lodash.dropright-4.1.6.tgz#36d00c94ded618c8f609319fc2fdfae270cd7209"
+  integrity sha512-FGYZ2Ggt1CKUdUD4P9KS16zJT9ja7KM+VEbL3aKJquuEKs51sKwJdqig/kK5jJYqOkApIyvrLk9/uMKfob7HiQ==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.findindex@^4.6.6":
   version "4.6.6"
   resolved "https://registry.npmjs.org/@types/lodash.findindex/-/lodash.findindex-4.6.6.tgz#36079decaaab8bcdcfb86cd5f3c0f20aca908691"
   integrity sha512-quPh7tw70yhryaubH6wBvgIQgeU1PFjdoT4eaW6WCKzjIlxgImLKIv4bvJhMTUlRkMgf5VAfECKKXKuB8cexgw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.last@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/@types/lodash.last/-/lodash.last-3.0.6.tgz#7d616fa9bab00ff4398a883979a65d2711528148"
+  integrity sha512-7z2YKH0w6IAHieY1WGYCOkX8kkxYpgJr+H3dxK1tELJqSacFyAerc88UWXdh0Kr1EqM1RIuTJfP07MsRr8GCmw==
   dependencies:
     "@types/lodash" "*"
 
@@ -62,6 +76,13 @@
   version "4.4.6"
   resolved "https://registry.npmjs.org/@types/lodash.toarray/-/lodash.toarray-4.4.6.tgz#d93f146760cc85b42d94070c50fb4d4d4618aaca"
   integrity sha512-23TxdC73+4Z3gdP+J/QWUfjba0DBLNOI4gC+nKn7wLfb5EOrSpqKsnDTzW9xMngF96uvVm7ROFcQ96PDjWEcNw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.trim@^4.5.6":
+  version "4.5.6"
+  resolved "https://registry.npmjs.org/@types/lodash.trim/-/lodash.trim-4.5.6.tgz#0e89132e5bdf88f98880050331a6c76f8d9a6ecb"
+  integrity sha512-AtQ4opIa2BdbrJBTUtGCvehK8yJTEeXEE7XVsALNeo/MLYS48Q86CNvqwS1rjlhtP/MBHFZiOy052oARqiI6fQ==
   dependencies:
     "@types/lodash" "*"
 
@@ -293,6 +314,11 @@ es6-promisify@^5.0.0:
   dependencies:
     es6-promise "^4.0.3"
 
+escape-regexp-component@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/escape-regexp-component/-/escape-regexp-component-1.0.2.tgz#9c63b6d0b25ff2a88c3adbd18c5b61acc3b9faa2"
+  integrity sha1-nGO20LJf8qiMOtvRjFthrMO5+qI=
+
 escape-string-regexp@1.0.5, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -484,10 +510,20 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash.dropright@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/lodash.dropright/-/lodash.dropright-4.1.1.tgz#5410858b624ae531562b18205cc3fbe70544802c"
+  integrity sha1-VBCFi2JK5TFWKxggXMP75wVEgCw=
+
 lodash.findindex@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/lodash.findindex/-/lodash.findindex-4.6.0.tgz#a3245dee61fb9b6e0624b535125624bb69c11106"
   integrity sha1-oyRd7mH7m24GJLU1ElYku2nBEQY=
+
+lodash.last@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/lodash.last/-/lodash.last-3.0.0.tgz#242f663112dd4c6e63728c60a3c909d1bdadbd4c"
+  integrity sha1-JC9mMRLdTG5jcoxgo8kJ0b2tvUw=
 
 lodash.remove@^4.7.0:
   version "4.7.0"
@@ -503,6 +539,11 @@ lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
+lodash.trim@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.npmjs.org/lodash.trim/-/lodash.trim-4.5.1.tgz#36425e7ee90be4aa5e27bcebb85b7d11ea47aa57"
+  integrity sha1-NkJefukL5KpeJ7zruFt9EepHqlc=
 
 lodash.uniqby@^4.7.0:
   version "4.7.0"
@@ -775,6 +816,106 @@ sync-exec@~0.6.x:
   version "0.6.2"
   resolved "https://registry.npmjs.org/sync-exec/-/sync-exec-0.6.2.tgz#717d22cc53f0ce1def5594362f3a89a2ebb91105"
   integrity sha1-cX0izFPwzh3vVZQ2LzqJouu5EQU=
+
+title-case-minors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/title-case-minors/-/title-case-minors-1.0.0.tgz#51f17037c294747a1d1cda424b5004c86d8eb115"
+  integrity sha1-UfFwN8KUdHodHNpCS1AEyG2OsRU=
+
+to-camel-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-camel-case/-/to-camel-case-1.0.0.tgz#1a56054b2f9d696298ce66a60897322b6f423e46"
+  integrity sha1-GlYFSy+daWKYzmamCJcyK29CPkY=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-capital-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-capital-case/-/to-capital-case-1.0.0.tgz#a57c5014fd5a37217cf05099ff8a421bbf9c9b7f"
+  integrity sha1-pXxQFP1aNyF88FCZ/4pCG7+cm38=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-case@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/to-case/-/to-case-2.0.0.tgz#6901ed90cdbfadbf7a16d06897bfb412fa3c0f0a"
+  integrity sha1-aQHtkM2/rb96FtBol7+0Evo8Dwo=
+  dependencies:
+    to-camel-case "^1.0.0"
+    to-capital-case "^1.0.0"
+    to-constant-case "^1.0.0"
+    to-dot-case "^1.0.0"
+    to-no-case "^1.0.0"
+    to-pascal-case "^1.0.0"
+    to-sentence-case "^1.0.0"
+    to-slug-case "^1.0.0"
+    to-snake-case "^1.0.0"
+    to-space-case "^1.0.0"
+    to-title-case "^1.0.0"
+
+to-constant-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-constant-case/-/to-constant-case-1.0.0.tgz#63f52729b00e85188be7e0e361789e5eabaa081b"
+  integrity sha1-Y/UnKbAOhRiL5+DjYXieXquqCBs=
+  dependencies:
+    to-snake-case "^1.0.0"
+
+to-dot-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-dot-case/-/to-dot-case-1.0.0.tgz#e688f11a3c9ba511eac0dd0f012c95cc9316ec3b"
+  integrity sha1-5ojxGjybpRHqwN0PASyVzJMW7Ds=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-no-case@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/to-no-case/-/to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a"
+  integrity sha1-xyKQcWTvaxeBMsjmmTAhLRtKoWo=
+
+to-pascal-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-pascal-case/-/to-pascal-case-1.0.0.tgz#0bbdc8df448886ba01535e543327048d0aa1ce78"
+  integrity sha1-C73I30SIhroBU15UMycEjQqhzng=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-sentence-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-sentence-case/-/to-sentence-case-1.0.0.tgz#c483bf3647737e5c738ef7006fe360d5f99c572e"
+  integrity sha1-xIO/NkdzflxzjvcAb+Ng1fmcVy4=
+  dependencies:
+    to-no-case "^1.0.0"
+
+to-slug-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-slug-case/-/to-slug-case-1.0.0.tgz#92acde53471055a33c830719e8eb78387206d813"
+  integrity sha1-kqzeU0cQVaM8gwcZ6Ot4OHIG2BM=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-snake-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-snake-case/-/to-snake-case-1.0.0.tgz#ce746913897946019a87e62edfaeaea4c608ab8c"
+  integrity sha1-znRpE4l5RgGah+Yu366upMYIq4w=
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-space-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-space-case/-/to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17"
+  integrity sha1-sFLar7Gysp3HcM6gFj5ewOvJ/Bc=
+  dependencies:
+    to-no-case "^1.0.0"
+
+to-title-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/to-title-case/-/to-title-case-1.0.0.tgz#aca88f89d6064de50108a97cea0db44827e80061"
+  integrity sha1-rKiPidYGTeUBCKl86g20SCfoAGE=
+  dependencies:
+    escape-regexp-component "^1.0.2"
+    title-case-minors "^1.0.0"
+    to-capital-case "^1.0.0"
+    to-sentence-case "^1.0.0"
 
 tslib@^1.8.0, tslib@^1.8.1:
   version "1.10.0"

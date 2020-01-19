@@ -93,13 +93,11 @@ export function getStyleDataFromHtml(
 
         tagClass = (tagClass || '')
             .replace('class=', '')
-            .replace('{', '')
             .replace(/}/g, '')
             .replace(/"/g, '')
 
         tagStyle = (tagStyle || '')
             .replace('style=', '')
-            .replace('{', '')
             .replace(/}/g, '')
             .replace(/"/g, '')
 

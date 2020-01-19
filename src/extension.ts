@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { copy } from 'copy-paste'
-import { getStyleStringFromHtml, deleteStyle } from './util'
+import { getStyleStringFromHtml, deleteStyle } from './getStyleStringFromHtml'
 
 export function activate(context: vscode.ExtensionContext) {
     let cssStyle = vscode.workspace

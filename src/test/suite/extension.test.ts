@@ -11,7 +11,7 @@ import {
     deepSassBlock,
     deepCssBlock,
     getStyleStringFromHtml,
-} from '../../util'
+} from '../../getStyleStringFromHtml'
 
 suite('Extension Test Suite', () => {
     vscode.window.showInformationMessage('Start all tests.')
